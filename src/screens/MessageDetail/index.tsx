@@ -26,7 +26,6 @@ export const MessageDetail: React.FC = () => {
   const theme = useTheme()
   
   const { params } = useRoute()  
-  
 
   const { detail, subject, timestamp, id} = params as MessageDTO
 

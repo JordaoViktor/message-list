@@ -2,6 +2,7 @@ import React, {useState, useEffect, useCallback, useContext} from 'react';
 import { ListRenderItemInfo, LayoutAnimation } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFetch } from '@services/hooks/useFetch'
+import { useTheme } from 'styled-components';
 import faker from 'faker';
 
 import { MessageListContext } from '@context/messageList';
@@ -25,7 +26,7 @@ import {
   RefrashContainer
 } from './styles';  
 
-import { useTheme } from 'styled-components';
+
 
 const message = {
   id: Math.random() * 1000,
@@ -61,8 +62,8 @@ export const Home: React.FC = () => {
   const handleRemoveMessage = async (item : MessageDTO) => {
     LayoutAnimation.easeInEaseOut()
 
-    setMessagesList((prevState :any) => prevState
-      .filter(({ id }: number)  => id !== item.id))
+    setMessagesList((prevState : MessageDTO[]) => prevState
+      .filter(({ id }: number): boolean => id !== item.id))
 
     await api.delete(`messages/${item.id}`)
   } 
@@ -71,7 +72,7 @@ export const Home: React.FC = () => {
     navigation.navigate('MessageDetail', item )
   }
 
-  const handleReadMessage = useCallback((item ) => {
+  const handleReadMessage = useCallback((item) => {
     setMessagesList((prevState ) => prevState
       .map((messageItem) => messageItem.id === item.id 
         ? {...messageItem, read: !item.read} 
