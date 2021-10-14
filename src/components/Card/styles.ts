@@ -1,8 +1,11 @@
 import styled from 'styled-components/native'
-import { RectButton } from 'react-native-gesture-handler';
+import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 
+interface ISwiperCard {
+  bgColor:boolean;
+}
 
-export const SwiperCard = styled(RectButton)`
+export const SwiperCard = styled(RectButton)<ISwiperCard>`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
