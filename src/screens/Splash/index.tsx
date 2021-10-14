@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { wait } from '@utils/Time'
 import { useNavigation } from '@react-navigation/native';
-import { Container,MessageAnimation } from './styles';
-import { MessageDTO } from '@services/types/dtos';
 import { useFetch } from '@services/hooks/useFetch';
+import { MessageDTO } from '@services/types/dtos';
+import { wait } from '@utils/Time'
+import { Container,MessageAnimation } from './styles';
 
 export const Splash: React.FC = () => {
   const navigation = useNavigation()

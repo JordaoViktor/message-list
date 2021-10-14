@@ -20,10 +20,11 @@ import { formattedDate } from '@utils/Time';
 import { MessageListContext } from '@context/messageList';
 
 export const MessageDetail: React.FC = () => {
-  const { messagesList, setMessagesList} = useContext(MessageListContext)
+  const { setMessagesList} = useContext(MessageListContext)
   
   const navigation = useNavigation()
   const theme = useTheme()
+  
   const { params } = useRoute()  
   
 
@@ -32,7 +33,7 @@ export const MessageDetail: React.FC = () => {
   const handlePreviousPage = () => navigation.goBack()
 
   const handleRemoveMessage = async (id : number) => {    
-    setMessagesList(prevState => prevState.filter((item: number)  => item.id !== id))
+    setMessagesList((prevState:any) => prevState.filter((item: number)  => item.id !== id))
     handlePreviousPage()
     await api.delete(`messages/${id}`)
   }
@@ -41,13 +42,13 @@ export const MessageDetail: React.FC = () => {
     <Container>
       <HeaderMenu>
         <IconButton onPress={handlePreviousPage}>
-          <FontAwesome name="arrow-left" size={22} color={theme.colors.leftCard}/>
+          <FontAwesome name="arrow-left" size={22} color={theme.colors.tertiary}/>
         </IconButton>
 
         <DateText>{formattedDate(timestamp)}</DateText>
 
         <IconButton onPress={() => handleRemoveMessage(id)}>
-          <FontAwesome name="trash" size={22} color={theme.colors.leftCard}/>
+          <FontAwesome name="trash" size={22} color={theme.colors.tertiary}/>
         </IconButton>
       </HeaderMenu>
 

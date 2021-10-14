@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback, useContext} from 'react';
-import { Text, ListRenderItemInfo, View } from 'react-native';
+import { ListRenderItemInfo, LayoutAnimation } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFetch } from '@services/hooks/useFetch'
 import faker from 'faker';
@@ -9,31 +9,30 @@ import { api } from '@services/api';
 import { MessageDTO } from '@services/types/dtos';
 
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
-import { wait, formattedDate } from '@utils/Time'
+import { wait } from '@utils/Time'
+
+import { Card } from '@components/Card';
 
 import {
   Container,
   Title,
   SubTitle,
   SwiperList,
-  SwiperCard,
-  DateWrapper,
-  DateText,
-  SubjectText,
   SwiperBackgroundCard,
   SwiperIconButton,
   BookmarkButton,
   IconsButton,
   RefrashContainer
 } from './styles';  
+import { useTheme } from 'styled-components';
 
 export const Home: React.FC = () => {
   const { data } = useFetch<MessageDTO[] | undefined>('messages')
   const { messagesList, setMessagesList} = useContext(MessageListContext)
   const [refreshing, setRefreshing] = useState(false);
-
-
+  const messageListOrdened = messagesList?.sort((a: MessageDTO, b: MessageDTO)=> a.timestamp + b.timestamp)
   const navigation = useNavigation()
+  const theme = useTheme()
   
   const message = {
     id: Math.random() * 1000,
@@ -45,24 +44,35 @@ export const Home: React.FC = () => {
 
   const addMoreMessages = async (item: MessageDTO) => {
     await api.post('messages/', item )
-    setMessagesList((prevState) => [item,...prevState])
+    setMessagesList((prevState :any) => [item, ...prevState])
   }
   
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     addMoreMessages(message)
-    
+    LayoutAnimation.easeInEaseOut()
     wait(2000).then(() => setRefreshing(false));
   }, [ data, messagesList]);
 
   const handleRemoveMessage = async (item : MessageDTO) => {
+    LayoutAnimation.easeInEaseOut()
+
+    setMessagesList((prevState :any) => prevState
+      .filter(({ id }: number)  => id !== item.id))
+
     await api.delete(`messages/${item.id}`)
-    setMessagesList(prevState=> prevState.filter(({ id }: number)  => id !== item.id))
-  }
+  } 
 
   const handleMessageDetail = (item: MessageDTO ) => {
     navigation.navigate('MessageDetail', item )
   }
+
+  const handleReadMessage = useCallback((item : any) => {
+    setMessagesList((prevState : any) => prevState
+      .map((messageItem : any) => messageItem.id === item.id 
+        ? {...messageItem, read: !item.read} 
+        : messageItem))
+  })
 
   useEffect(() => { 
     setMessagesList(data)
@@ -76,29 +86,19 @@ export const Home: React.FC = () => {
       <SubTitle>Swipe down for update the messages</SubTitle>
 
       <SwiperList
-        data={messagesList?.sort((a,b)=> a.timestamp - b.timestamp)}
-        keyExtractor={(item) => String(item.id)}
+        data={messageListOrdened}
+        keyExtractor={(item : any) => String(item.id)}
         refreshControl={
           <RefrashContainer
             refreshing={refreshing}
             onRefresh={onRefresh}
           />
         }
-        renderItem={({item}: ListRenderItemInfo<MessageDTO>, rowMap) => (
-          <SwiperCard>
-            <DateWrapper>
-              <DateText>{formattedDate(item.timestamp)}</DateText>
-            </DateWrapper>
-
-            <SubjectText >{item.subject}</SubjectText>
-          </SwiperCard>
-        )}
+        renderItem={({item}: ListRenderItemInfo<MessageDTO>, rowMap) => (<Card item={item}/>)}
         renderHiddenItem={({ item }: ListRenderItemInfo<MessageDTO>, rowMap) => (
           <SwiperBackgroundCard>
-            <BookmarkButton onPress={() => {
-              setMessagesList((prevState : any) => prevState.map((messageItem : any) => messageItem.id === item.id ? {...messageItem, read: !item.read} : messageItem))
-            }}>
-              <FontAwesome name="bookmark" size={22} color={item.read ? '#fff' : '#000000'}/>
+            <BookmarkButton onPress={() => handleReadMessage(item)}>
+              <FontAwesome name="bookmark" size={22} color={item.read ? theme.colors.active : theme.colors.unActive}/>
             </BookmarkButton>
 
             <IconsButton>

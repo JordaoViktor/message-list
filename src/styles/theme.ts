@@ -3,14 +3,15 @@ export default {
     background: '#172121',
     backgroundPrimary: '#444554',
 
+    active:'#fff',
+    unActive: '#000',
+    
     primary: '#EDE3E4',
     secondary: '#7F7B82 ',
-
-    
+    tertiary: '#BFACB5',
 
     mainCard: '#92898A',
-    leftCard: '#BFACB5',
-    rightCard: '#E5D0CC'
+    backgroundCard: '#E5D0CC'
   },
   fonts: {
     primary_400: "Roboto_400Regular",

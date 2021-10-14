@@ -1,5 +1,5 @@
-import {Alert, BackHandler} from 'react-native';
-import {api} from '@services/api';
+import { Alert, BackHandler } from 'react-native';
+import { api } from '@services/api';
 import useSWR from 'swr';
 
 export function useFetch<Data = any>(url: string) {

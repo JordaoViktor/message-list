@@ -4,7 +4,6 @@ const MessageListContext = createContext({} as any);
 
 const MessageList: React.FC = ({children}) => {
   const [messagesList, setMessagesList] = useState([]);
-  
 
   return (
     <MessageListContext.Provider value={{messagesList, setMessagesList}}>

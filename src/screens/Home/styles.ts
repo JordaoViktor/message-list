@@ -36,38 +36,6 @@ export const SwiperList = styled(SwipeListView).attrs({
   background-color: ${({ theme })=> theme.colors.background};
 `;
 
-export const SwiperCard = styled(RectButton)`
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  height: 60px;
-  width: 100%;
-
-  padding: 0 10px;
-
-  margin-bottom:5px;
-  background-color: ${({ theme })=> theme.colors.mainCard};
-`;
-
-export const DateWrapper = styled.View`
-  width: 100%;
-  padding-bottom: 2px;
-  font-weight: bold;
-`;
-
-export const DateText = styled.Text`
-  font-weight: bold;
-  font-family:${({ theme })=>theme.fonts.secondary_400};
-`;
-
-export const SubjectText = styled.Text`
-  padding: 0 10px;
-  text-align: auto;
-
-  font-family:${({ theme })=> theme.fonts.primary_400};
-`;
-
 export const SwiperBackgroundCard = styled.View`
   align-items: center;
   flex-direction: row;
@@ -76,7 +44,7 @@ export const SwiperBackgroundCard = styled.View`
   width:100%;
   padding-right: 20px;
 
-  background-color: ${({ theme })=> theme.colors.rightCard};
+  background-color: ${({ theme })=> theme.colors.backgroundCard};
 `;
 
 export const BookmarkButton = styled(BorderlessButton)`

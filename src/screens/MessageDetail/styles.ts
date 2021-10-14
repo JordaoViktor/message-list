@@ -26,7 +26,7 @@ export const IconButton = styled(BorderlessButton)`
 
 export const DateText = styled.Text`
   font-family:${({theme })=> theme.fonts.secondary_700};
-  color: ${({ theme })=> theme.colors.leftCard};
+  color: ${({ theme })=> theme.colors.tertiary};
   font-size:20px;
 `;
 
@@ -43,7 +43,7 @@ export const Header = styled.View`
 export const SubjectText = styled.Text`
   padding:20px 0px;
   font-family: ${({ theme }) => theme.fonts.secondary_400};
-  color: ${({ theme }) => theme.colors.rightCard};
+  color: ${({ theme }) => theme.colors.backgroundCard};
   font-size:24px;
 `;
 
@@ -62,5 +62,5 @@ export const DetailWrapper = styled.ScrollView.attrs({
 
 export const DetailText = styled.Text`
   text-align: justify;
-  color: ${({ theme })=> theme.colors.leftCard};
+  color: ${({ theme })=> theme.colors.tertiary};
 `;
