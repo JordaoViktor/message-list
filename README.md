@@ -1,6 +1,6 @@
 # Message List
 
-## For to run the project you must run:
+## For to run the project you must:
 
 #### yarn api
 
