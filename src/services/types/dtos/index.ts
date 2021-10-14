@@ -1,4 +1,4 @@
-import {MessageDTO} from './messageDTO'
+import { MessageDTO } from './messageDTO'
 
 export {
   MessageDTO

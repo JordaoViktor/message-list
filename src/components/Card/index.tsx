@@ -1,7 +1,6 @@
 import React, {memo} from 'react';
 
 import { formattedDate } from '@utils/Time';
-import { MessageDTO } from '@services/types/dtos';
 
 import { 
   SwiperCard,
@@ -10,8 +9,9 @@ import {
   SubjectText
 } from './styles';
 
-export const MainCard = (data: MessageDTO) => (
+export const MainCard = (data: any) => (
   <SwiperCard bgColor={data.item.read}>
+    
     <DateWrapper>
       <DateText>{formattedDate(data?.item.timestamp)}</DateText>
     </DateWrapper>

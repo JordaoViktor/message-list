@@ -24,24 +24,28 @@ import {
   IconsButton,
   RefrashContainer
 } from './styles';  
+
 import { useTheme } from 'styled-components';
 
+const message = {
+  id: Math.random() * 1000,
+  timestamp: new Date().getTime(),
+  subject: faker.lorem.sentence(),
+  detail: faker.lorem.paragraphs(),
+  read: false,
+}
+
 export const Home: React.FC = () => {
-  const { data } = useFetch<MessageDTO[] | undefined>('messages')
-  const { messagesList, setMessagesList} = useContext(MessageListContext)
   const [refreshing, setRefreshing] = useState(false);
-  const messageListOrdened = messagesList?.sort((a: MessageDTO, b: MessageDTO)=> a.timestamp + b.timestamp)
+  const { messagesList, setMessagesList} = useContext(MessageListContext)
+
+  const { data } = useFetch<MessageDTO[] | undefined>('messages')
+
   const navigation = useNavigation()
   const theme = useTheme()
   
-  const message = {
-    id: Math.random() * 1000,
-    timestamp: new Date().getTime(),
-    subject: faker.lorem.sentence(),
-    detail: faker.lorem.paragraphs(),
-    read: false,
-  }
-
+  const messageListOrdened = messagesList?.sort((a: MessageDTO, b: MessageDTO)=> a.timestamp + b.timestamp)
+  
   const addMoreMessages = async (item: MessageDTO) => {
     await api.post('messages/', item )
     setMessagesList((prevState :any) => [item, ...prevState])
@@ -67,9 +71,9 @@ export const Home: React.FC = () => {
     navigation.navigate('MessageDetail', item )
   }
 
-  const handleReadMessage = useCallback((item : any) => {
-    setMessagesList((prevState : any) => prevState
-      .map((messageItem : any) => messageItem.id === item.id 
+  const handleReadMessage = useCallback((item ) => {
+    setMessagesList((prevState ) => prevState
+      .map((messageItem) => messageItem.id === item.id 
         ? {...messageItem, read: !item.read} 
         : messageItem))
   })
