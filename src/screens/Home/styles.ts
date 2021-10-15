@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 import { SwipeListView  } from 'react-native-swipe-list-view';
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
+import { Platform } from 'react-native';
 
 export const Container = styled.SafeAreaView`
   flex:1;
@@ -11,13 +12,14 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Title = styled.Text`
-  font-family:${({ theme })=> theme.fonts.secondary_700};
+  font-family:${({ theme }) => theme.fonts.secondary_700};
   font-size: 30px;
-  color:${({ theme })=> theme.colors.primary};
+  color:${({ theme }) => theme.colors.primary};
+  margin-top: ${Platform.OS === 'android'  ? '40px' : '0px'};
 `;
 
 export const SubTitle = styled.Text`
-  font-family:${({ theme })=> theme.fonts.secondary_700};
+  font-family:${({ theme }) => theme.fonts.secondary_700};
   font-size: 24px;
   color: ${({ theme })=> theme.colors.primary};
   padding-bottom:20px;

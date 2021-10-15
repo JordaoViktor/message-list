@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { Platform, StatusBar, UIManager } from 'react-native';
 import {MessageList} from './src/context/messageList'
 import { ThemeProvider } from 'styled-components';
 import AppLoading from "expo-app-loading";
@@ -31,6 +31,12 @@ export default function App() {
     return <AppLoading />;
   } 
   
+  if (Platform.OS === 'android') {
+    if (UIManager.setLayoutAnimationEnabledExperimental) {
+      UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+  }
+
   return (
     <MessageList>
       <ThemeProvider theme={theme}>

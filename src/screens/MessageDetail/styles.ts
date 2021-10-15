@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import styled  from 'styled-components/native';
 
@@ -9,6 +10,7 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const HeaderMenu = styled.View`
+  margin-top: ${Platform.OS === 'android'  ? '20px' : '0px'};
   height:50px;
   width:100%;
 

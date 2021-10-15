@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 
-interface ISwiperCard {
+interface ISwiperCard extends RectButtonProps {
   bgColor:boolean;
 }
 
