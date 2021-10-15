@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useCallback, useContext, Dispatch, SetStateAction} from 'react';
+import React,{
+  useState,
+  useEffect,
+  useCallback,
+  useContext,
+} from 'react';
 import { ListRenderItemInfo, LayoutAnimation } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFetch } from '@services/hooks/useFetch'
@@ -93,7 +98,7 @@ export const Home: React.FC = () => {
             onRefresh={onRefresh}
           />
         }
-        renderItem={({item}: ListRenderItemInfo<MessageDTO>) => (<Card item={item}/>)}
+        renderItem={({ item }: ListRenderItemInfo<MessageDTO>) => <Card item={item}/>}
         renderHiddenItem={({ item }: ListRenderItemInfo<MessageDTO>) => (
           <SwiperBackgroundCard>
             <BookmarkButton onPress={() => handleReadMessage(item)}>

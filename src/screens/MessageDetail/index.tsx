@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import { useNavigation,  useRoute } from '@react-navigation/core';
-import { FontAwesome } from '@expo/vector-icons'
-import { useTheme } from 'styled-components';
+import { useNavigation, useRoute } from '@react-navigation/core';
 
 import {
   Container,
   HeaderMenu,
   IconButton,
+  PreviousPageIcon,
   DateText,
+  TrashIcon,
   Header,
   SubjectText,
   DetailWrapper,
@@ -23,11 +23,10 @@ export const MessageDetail: React.FC = () => {
   const { setMessagesList } = useContext(MessageListContext)
   
   const navigation = useNavigation()
-  const theme = useTheme()
   
   const { params } = useRoute()  
 
-  const { detail, subject, timestamp, id} = params as MessageDTO
+  const { detail, subject, timestamp, id } = params as MessageDTO
 
   const handlePreviousPage = () => navigation.goBack()
 
@@ -41,13 +40,13 @@ export const MessageDetail: React.FC = () => {
     <Container>
       <HeaderMenu>
         <IconButton onPress={handlePreviousPage}>
-          <FontAwesome name="arrow-left" size={22} color={theme.colors.tertiary}/>
+          <PreviousPageIcon/>
         </IconButton>
 
         <DateText>{formattedDate(timestamp)}</DateText>
 
         <IconButton onPress={() => handleRemoveMessage(id)}>
-          <FontAwesome name="trash" size={22} color={theme.colors.tertiary}/>
+          <TrashIcon/>
         </IconButton>
       </HeaderMenu>
 

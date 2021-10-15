@@ -13,7 +13,6 @@ export const MainCard = (data: any) => (
   <SwiperCard 
     bgColor={data.item.read}
   >
-    
     <DateWrapper>
       <DateText>{formattedDate(data?.item.timestamp)}</DateText>
     </DateWrapper>

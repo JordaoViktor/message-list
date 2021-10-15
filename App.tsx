@@ -21,7 +21,7 @@ import theme from '@styles/theme';
 import { Routes } from './src/routes'
 
 export default function App() {
-  const [fontsLoaded, error] = useFonts({
+  const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold,
     Oswald_400Regular,
@@ -42,7 +42,7 @@ export default function App() {
     <MessageList>
       <ThemeProvider theme={theme}>
         <StatusBar
-          barStyle="dark-content"
+          barStyle="light-content"
           translucent
           backgroundColor="transparent"
         />
