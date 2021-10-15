@@ -65,8 +65,7 @@ export const BookmarkIcon = styled(FontAwesome).attrs({
   };
 `;
 
-
-export const IconsButton = styled(BorderlessButton)`
+export const IconsButton = styled.View`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
