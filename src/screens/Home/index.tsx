@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, useContext} from 'react';
+import React, {useState, useEffect, useCallback, useContext, Dispatch, SetStateAction} from 'react';
 import { ListRenderItemInfo, LayoutAnimation } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFetch } from '@services/hooks/useFetch'
@@ -25,8 +25,6 @@ import {
   IconsButton,
   RefrashContainer
 } from './styles';  
-
-
 
 const message = {
   id: Math.random() * 1000,
@@ -63,7 +61,7 @@ export const Home: React.FC = () => {
     LayoutAnimation.easeInEaseOut()
 
     setMessagesList((prevState : MessageDTO[]) => prevState
-      .filter(({ id }: number): boolean => id !== item.id))
+      .filter((event: MessageDTO) => event.id !== item.id))
 
     await api.delete(`messages/${item.id}`)
   } 
@@ -73,11 +71,11 @@ export const Home: React.FC = () => {
   }
 
   const handleReadMessage = useCallback((item) => {
-    setMessagesList((prevState ) => prevState
-      .map((messageItem) => messageItem.id === item.id 
+    setMessagesList((prevState: MessageDTO[]) => prevState
+      .map((messageItem: MessageDTO) => messageItem.id === item.id 
         ? {...messageItem, read: !item.read} 
         : messageItem))
-  })
+  },[])
 
   useEffect(() => { 
     setMessagesList(data)

@@ -32,7 +32,7 @@ export const MessageDetail: React.FC = () => {
   const handlePreviousPage = () => navigation.goBack()
 
   const handleRemoveMessage = async (id : number) => {    
-    setMessagesList((prevState:any) => prevState.filter((item: number)  => item.id !== id))
+    setMessagesList((prevState:MessageDTO[]) => prevState.filter((item: MessageDTO) => item.id !== id))
     handlePreviousPage()
     await api.delete(`messages/${id}`)
   }
