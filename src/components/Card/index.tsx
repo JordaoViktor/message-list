@@ -10,7 +10,9 @@ import {
 } from './styles';
 
 export const MainCard = (data: any) => (
-  <SwiperCard bgColor={data.item.read}>
+  <SwiperCard 
+    bgColor={data.item.read}
+  >
     
     <DateWrapper>
       <DateText>{formattedDate(data?.item.timestamp)}</DateText>
