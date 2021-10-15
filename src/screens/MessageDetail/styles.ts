@@ -43,7 +43,8 @@ export const Header = styled.View`
 `;
 
 export const SubjectText = styled.Text`
-  padding:20px 0px;
+  padding:20px 20px;
+  align-items: center;
   font-family: ${({ theme }) => theme.fonts.secondary_400};
   color: ${({ theme }) => theme.colors.backgroundCard};
   font-size:24px;
