@@ -20,7 +20,7 @@ import { formattedDate } from '@utils/Time';
 import { MessageListContext } from '@context/messageList';
 
 export const MessageDetail: React.FC = () => {
-  const { setMessagesList} = useContext(MessageListContext)
+  const { setMessagesList } = useContext(MessageListContext)
   
   const navigation = useNavigation()
   const theme = useTheme()

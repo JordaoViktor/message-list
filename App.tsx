@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { Platform, StatusBar, UIManager } from 'react-native';
 import {MessageList} from './src/context/messageList'

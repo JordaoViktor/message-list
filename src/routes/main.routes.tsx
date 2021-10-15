@@ -3,10 +3,12 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import {MessageDTO} from '@services/types/dtos'
 import { Home, MessageDetail, Splash } from '@screens/index';
 
-const { Navigator, Screen } = createNativeStackNavigator();
+const { Navigator, Screen } = createNativeStackNavigator<RootStackParamListType>();
 
-export type RootStackParamList = {
-  Home: string | MessageDTO ;
+export type RootStackParamListType = {
+  Home: undefined ;
+  MessageDetail: MessageDTO;
+  Splash: undefined;
 };
 
 export const MainRoutes: React.FC = () => (

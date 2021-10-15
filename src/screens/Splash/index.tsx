@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { useFetch } from '@services/hooks/useFetch';
-import { MessageDTO } from '@services/types/dtos';
 import { wait } from '@utils/Time'
-import { Container,MessageAnimation } from './styles';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamListType } from '@routes/main.routes'
+import { Container, MessageAnimation } from './styles';
+
+type SplashScreenProps = StackNavigationProp<RootStackParamListType, 'Home'>
 
 export const Splash: React.FC = () => {
-  const navigation = useNavigation()
 
-  const {data} = useFetch<MessageDTO[] | undefined>('messages')
+  const navigation = useNavigation<SplashScreenProps>()
 
-  const handleNavigateHome = () => (
-    navigation.navigate('Home', data)
-  )
+  const handleNavigateHome = () => navigation.navigate('Home')
 
   useEffect(() => {
     wait(2000).then(() => handleNavigateHome())

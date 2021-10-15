@@ -25,6 +25,10 @@ import {
   IconsButton,
   RefrashContainer
 } from './styles';  
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamListType } from '@routes/main.routes';
+
+type HomeScreenProps = StackNavigationProp<RootStackParamListType, 'MessageDetail'>
 
 const message = {
   id: Math.random() * 1000,
@@ -34,13 +38,14 @@ const message = {
   read: false,
 }
 
+
 export const Home: React.FC = () => {
   const [refreshing, setRefreshing] = useState(false);
   const { messagesList, setMessagesList} = useContext(MessageListContext)
 
   const { data } = useFetch<MessageDTO[] | undefined>('messages')
 
-  const navigation = useNavigation()
+  const navigation = useNavigation<HomeScreenProps>()
   const theme = useTheme()
   
   const messageListOrdened = messagesList?.sort((a: MessageDTO, b: MessageDTO)=> a.timestamp + b.timestamp)
