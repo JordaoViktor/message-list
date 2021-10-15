@@ -6,7 +6,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "api": "json-server ./src/services/server.json --host 127.0.0.1 --port 3333"
+    "api": "json-server ./src/services/server.json --host 127.0.0.1 --port 3333",
+    "test": "jest"
   },
   "dependencies": {
     "@expo-google-fonts/oswald": "^0.2.0",
@@ -14,8 +15,6 @@
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.4",
     "@react-navigation/stack": "^6.0.11",
-    "@types/faker": "^5.5.8",
-    "@types/styled-components-react-native": "^5.1.1",
     "axios": "^0.23.0",
     "expo": "~42.0.1",
     "expo-app-loading": "1.1.2",
@@ -36,8 +35,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@testing-library/react-native": "^7.2.0",
+    "@types/jest": "^27.0.2",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
+    "@types/faker": "^5.5.8",
+    "@types/react-test-renderer": "^17.0.1",
+    "@types/styled-components-react-native": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "babel-eslint": "^10.1.0",
@@ -52,8 +56,17 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "jest": "^27.2.5",
+    "jest-expo": "^42.1.0",
     "prettier": "^2.4.1",
+    "react-test-renderer": "^17.0.2",
     "typescript": "~4.0.0"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ]
   },
   "private": true
 }

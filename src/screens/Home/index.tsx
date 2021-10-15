@@ -12,7 +12,8 @@ import { MessageListContext } from '@context/messageList';
 import { api } from '@services/api';
 import { MessageDTO } from '@services/types/dtos';
 
-import { message } from './constant';
+
+import faker from 'faker';
 import { wait } from '@utils/Time'
 
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -42,6 +43,14 @@ export const Home: React.FC = () => {
   const { messagesList, setMessagesList} = useContext(MessageListContext)
 
   const { data } = useFetch<MessageDTO[] | undefined>('messages')
+
+  const message = {
+    id: Math.random() * 1000,
+    timestamp: new Date().getTime(),
+    subject: faker.lorem.sentence(),
+    detail: faker.lorem.paragraphs(),
+    read: false,
+  }
 
   const navigation = useNavigation<HomeScreenProps>()
   

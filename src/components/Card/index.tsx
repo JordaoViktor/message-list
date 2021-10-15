@@ -12,6 +12,7 @@ import {
 export const MainCard = (data: any) => (
   <SwiperCard 
     bgColor={data.item.read}
+    testID='SwiperCard'
   >
     <DateWrapper>
       <DateText>{formattedDate(data?.item.timestamp)}</DateText>

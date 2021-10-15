@@ -70,7 +70,7 @@ export const SubjectText = styled.Text`
 export const DetailWrapper = styled.ScrollView.attrs({
   contentContainerStyle: {
     paddingTop: 20,
-    paddingBottom: 50
+    paddingBottom: 50,
   },
 })`
   width: 100%;
