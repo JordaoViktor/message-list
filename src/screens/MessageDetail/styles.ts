@@ -21,7 +21,7 @@ export const HeaderMenu = styled.View`
   background-color: ${({ theme })=> theme.colors.backgroundPrimary};
 
   padding: 0px 20px;
-  margin-top: ${Platform.OS === 'android'  ? '20px' : '0px'};
+  margin-top: ${Platform.OS === 'android'  ? '40px' : '0px'};
 `;
 
 export const IconButton = styled(BorderlessButton)`

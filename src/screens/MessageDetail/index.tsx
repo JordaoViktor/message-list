@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/core';
 
 import {
@@ -30,11 +30,11 @@ export const MessageDetail: React.FC = () => {
 
   const handlePreviousPage = () => navigation.goBack()
 
-  const handleRemoveMessage = async (id : number) => {    
+  const handleRemoveMessage = useCallback(async (id : number) => {    
     setMessagesList((prevState:MessageDTO[]) => prevState.filter((item: MessageDTO) => item.id !== id))
     handlePreviousPage()
     await api.delete(`messages/${id}`)
-  }
+  },[])
 
   return (
     <Container>
