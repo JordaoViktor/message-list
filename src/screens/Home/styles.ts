@@ -1,7 +1,8 @@
 import styled from 'styled-components/native'
+import { Platform } from 'react-native';
+import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import { SwipeListView  } from 'react-native-swipe-list-view';
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
-import { Platform } from 'react-native';
 
 export const Container = styled.SafeAreaView`
   flex:1;
@@ -54,6 +55,14 @@ export const BookmarkButton = styled(BorderlessButton)`
   margin-left:10px;
 `;
 
+export const BookmarkIcon = styled(FontAwesome).attrs({
+  name: "bookmark",
+  size: 22,
+})`
+  color: ${({ theme, color})=> color ? theme.colors.active : theme.colors.unActive};
+`;
+
+
 export const IconsButton = styled(BorderlessButton)`
   flex-direction:row;
   justify-content: flex-end;
@@ -68,4 +77,13 @@ export const SwiperIconButton = styled(RectButton)`
   
 `;
 
+export const EnterIcon = styled(Ionicons).attrs({
+  name: "open-outline",
+  size: 22,
+})``;
+
+export const RemoveIcon = styled(FontAwesome).attrs({
+  name:"times-circle",
+  size: 22,
+})``;
 
